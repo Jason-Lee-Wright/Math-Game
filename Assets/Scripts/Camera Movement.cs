@@ -21,20 +21,13 @@ public class CameraMovement : MonoBehaviour
 
     void LateUpdate()
     {
-        if (Input.GetMouseButton(1))
-        {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-            x += Input.GetAxis("Mouse X") * xSpeed * distance * 0.02f;
-            y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        x += Input.GetAxis("Mouse X") * xSpeed * distance * 0.02f;
+        y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
 
-            y = Mathf.Clamp(y, -20, 80);
-        }
-        else
-        {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }
+        y = Mathf.Clamp(y, -40, 85);
+        
 
         Quaternion rotation = Quaternion.Euler(y, x, 0);
         Vector3 position = player.transform.position - rotation * Vector3.forward * distance;
