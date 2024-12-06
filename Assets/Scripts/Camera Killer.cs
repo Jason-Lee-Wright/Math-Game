@@ -45,4 +45,12 @@ public class CameraKiller : MonoBehaviour
             Player.transform.position = Spawn;
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Bullet"))
+        {
+            Destroy(Camera);
+        }
+    }
 }

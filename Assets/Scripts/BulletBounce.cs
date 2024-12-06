@@ -7,7 +7,6 @@ public class Bulletbounce : MonoBehaviour
 {
     public GameObject Bullet;
     public Transform bulletSpawn;
-    public Vector3 startPoint;
     public int bounce;
     public float speed;
 
