@@ -12,6 +12,8 @@ public class Bulletbounce : MonoBehaviour
 
     private CameraKiller killer;
     private Rigidbody rb;
+    private GameObject newBullet;
+    private Rigidbody newRb;
 
     // Start is called before the first frame update
     void Start()
@@ -31,8 +33,8 @@ public class Bulletbounce : MonoBehaviour
 
     void SpawnBullet()
     {
-        GameObject newBullet = Instantiate(Bullet, bulletSpawn.position, bulletSpawn.rotation);
-        Rigidbody newRb = newBullet.GetComponent<Rigidbody>();
+        newBullet = Instantiate(Bullet, bulletSpawn.position, bulletSpawn.rotation);
+        newRb = newBullet.GetComponent<Rigidbody>();
 
         if (newRb != null)
         {
@@ -44,32 +46,25 @@ public class Bulletbounce : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Hit an object");
-
         if (collision.gameObject.CompareTag("Camera"))
         {
-            Debug.Log("it was the cam");
             Destroy(collision.gameObject);
         }
         else
         {
-            Debug.Log("it was not the cam");
             if (bounce <1)
             {
                 bounce++;
 
-                Debug.Log("add bouce");
-
-                Vector3 initalVelocity = rb.velocity;
+                Vector3 initalVelocity = newRb.velocity;
                 Vector3 normal = collision.contacts[0].normal;
                 Vector3 reflectedVelocity = Vector3.Reflect(initalVelocity, normal);
 
-                rb.velocity = reflectedVelocity;
+                newRb.velocity = reflectedVelocity;
             }
             else if (bounce >= 1)
             {
-                Debug.Log("kill bullet");
-                Destroy(Bullet);
+                Destroy(newBullet);
             }
         }
     }
