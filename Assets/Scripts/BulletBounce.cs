@@ -7,21 +7,11 @@ public class Bulletbounce : MonoBehaviour
     public Transform bulletSpawn;
     public float speed;
 
-    private BagRun BagRun;
-
-    private void Start()
-    {
-        BagRun = GetComponent<BagRun>();
-    }
-
     void Update()
     {
-        if (BagRun.win == false)
+        if (Input.GetMouseButtonDown(0))
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                SpawnBullet();
-            }
+            SpawnBullet();
         }
     }
 

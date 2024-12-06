@@ -8,8 +8,6 @@ public class BagRun : MonoBehaviour
     public GameObject player;
     public GameObject Canvas;
 
-    public bool win = false;
-
     public int speed = 10;
     public float distance = 5;
     public float runD = 5;
@@ -83,7 +81,6 @@ public class BagRun : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            win = true;
             Canvas.SetActive(true);
         }
     }
