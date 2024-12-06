@@ -13,7 +13,6 @@ public class CameraKiller : MonoBehaviour
     public float interpoint = 0.0f;
     public float camrange;
     public float distance;
-    Vector3 lastPostion;
 
     float LastTimeStartUp;
     float editorDeltaTime;

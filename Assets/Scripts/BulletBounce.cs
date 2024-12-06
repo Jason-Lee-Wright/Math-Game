@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Bulletbounce : MonoBehaviour
 {
     public GameObject Bullet;
-    public GameObject bulletSpawn;
+    public Transform bulletSpawn;
     public Vector3 startPoint;
     public int bounce;
     public float speed;
@@ -25,23 +26,40 @@ public class Bulletbounce : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Bullet.transform.position = bulletSpawn.transform.position;
-
-            Bullet.transform.position = Bullet.transform.position + transform.forward * speed * Time.deltaTime;
+            SpawnBullet();
         }
+    }
+
+    void SpawnBullet()
+    {
+        GameObject newBullet = Instantiate(Bullet, bulletSpawn.position, bulletSpawn.rotation);
+        Rigidbody newRb = newBullet.GetComponent<Rigidbody>();
+
+        if (newRb != null)
+        {
+            newRb.velocity = bulletSpawn.forward * speed;
+        }
+
+        bounce = 0;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Hit an object");
+
         if (collision.gameObject.CompareTag("Camera"))
         {
-            killer.Camera.SetActive(false);
+            Debug.Log("it was the cam");
+            Destroy(collision.gameObject);
         }
         else
         {
+            Debug.Log("it was not the cam");
             if (bounce <1)
             {
                 bounce++;
+
+                Debug.Log("add bouce");
 
                 Vector3 initalVelocity = rb.velocity;
                 Vector3 normal = collision.contacts[0].normal;
@@ -51,6 +69,7 @@ public class Bulletbounce : MonoBehaviour
             }
             else if (bounce >= 1)
             {
+                Debug.Log("kill bullet");
                 Destroy(Bullet);
             }
         }

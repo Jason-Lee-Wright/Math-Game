@@ -47,15 +47,13 @@ public class BagRun : MonoBehaviour
     {
         run++;
 
-        nextPosition = pos1.transform.position;
-
-        moveDistance = transform.position - nextPosition;
-
-        transform.position = Vector3.MoveTowards(transform.position, pos1.transform.position, speed * Time.deltaTime);
-
-        if (Vector3.Distance(transform.position, pos1.transform.position) <= 0.1f)
+        if ( run <= 3)
         {
-            transform.position = pos1.transform.position;
+            nextPosition = transform.position + new Vector3(0, 0, 5);
+
+            moveDistance = transform.position - nextPosition;
+
+            Vector3.MoveTowards(transform.position, nextPosition, speed);
         }
     }
 }
