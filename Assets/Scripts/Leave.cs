@@ -6,6 +6,6 @@ public class Leave : MonoBehaviour
 {
     public void LEAVE()
     {
-        Debug.Log("Left");
+        Application.Quit();
     }
 }

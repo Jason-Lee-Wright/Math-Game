@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using TMPro;
 using UnityEngine;
 
@@ -82,6 +83,8 @@ public class BagRun : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Canvas.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 }

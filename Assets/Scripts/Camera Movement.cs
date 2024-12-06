@@ -17,12 +17,12 @@ public class CameraMovement : MonoBehaviour
         Vector3 angles = transform.eulerAngles;
         x = angles.y;
         y = angles.x;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void LateUpdate()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
         x += Input.GetAxis("Mouse X") * xSpeed * distance * 0.02f;
         y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
 
