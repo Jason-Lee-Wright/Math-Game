@@ -7,14 +7,9 @@ public class BagRun : MonoBehaviour
 {
     public GameObject player;
 
-    public GameObject pos1;
-    public GameObject pos2;
-    public GameObject pos3;
-    public GameObject pos4;
-    public GameObject pos5;
-
     public int speed = 10;
     public float distance = 5;
+    public float runD = -5;
 
     private int run = 0;
 
@@ -49,9 +44,9 @@ public class BagRun : MonoBehaviour
 
         if ( run <= 3)
         {
-            nextPosition = transform.position + new Vector3(0, 0, 5);
+            nextPosition = transform.position + new Vector3(0, 0, runD);
 
-            moveDistance = transform.position - nextPosition;
+            moveDistance = transform.position + nextPosition;
 
             Vector3.MoveTowards(transform.position, nextPosition, speed);
         }
