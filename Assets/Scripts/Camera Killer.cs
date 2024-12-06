@@ -9,13 +9,8 @@ public class CameraKiller : MonoBehaviour
     public Vector3 Spawn;
     public GameObject Camera;
 
-    [Range(0.0f, 1.0f)]
-    public float interpoint = 0.0f;
     public float camrange;
     public float distance;
-
-    float LastTimeStartUp;
-    float editorDeltaTime;
 
 
     private void Start()
